@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ComingSoon extends StatelessWidget {
   @override
@@ -14,27 +13,21 @@ class ComingSoon extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                    child: Image.asset(
+                  "assets/swadeshiandolan.png",
+                  height: 80,
+                  width: 300,
+                )),
+                SizedBox(
+                  height: 20,
+                ),
                 Text(
                   "Coming Soon . . . .",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.deepOrange,
-                  child: MaterialButton(
-                    onPressed: () {
-                      launch("https://coolage.app");
-                    },
-                    child: Text(
-                      "Coolage App",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
                 ),
               ],
             ),
