@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshiandolan/models/item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Item1 extends StatelessWidget {
   final Item item;
@@ -144,13 +145,36 @@ class Item1 extends StatelessWidget {
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.purple,
-                      child: Text(item.reviewer.substring(0, 1)),
+                      child: Image.asset(item.reviewer.substring(0, 1)),
                     ),
-                    title: Text(item.reviewer, style: TextStyle()),
-                    subtitle: Text(item.review,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle()),
+                    title: Text("Instead", style: TextStyle()),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              launch("  firebase  play store link ");
+                            },
+                            child: Text(
+                              "Download Android",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              launch("  firebase  play store link ");
+                            },
+                            child: Text(
+                              "Download IOS",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
