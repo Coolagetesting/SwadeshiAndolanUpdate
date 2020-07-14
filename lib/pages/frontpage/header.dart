@@ -18,56 +18,56 @@ class HeaderScreen extends StatelessWidget {
         .make()
         .shimmer();
 
-    return Expanded(
-      child: Column(
-        children: [
-          SizedBox(height: 50,),
-          SafeArea(
-            child: VxBox(
-                    child: VStack([
-              ZStack(
-                [
-                  PictureWidget(),
-                  Row(
-                    children: [
-                      VStack([
-                        if (context.isMobile) 140.heightBox else 40.heightBox,
-                        nameWidget,
-                        20.heightBox,
-                        VxBox()
-                            .color(Colors.deepOrange)
-                            .size(60, 10)
-                            .make()
-                            .px4()
-                            .shimmer(primaryColor: Colors.deepOrange),
-                        30.heightBox,
-                      ]).pSymmetric(
-                        h: context.percentWidth * 10,
-                        v: 32,
+    return Column(
+      children: [
+        SizedBox(
+          height: 50,
+        ),
+        SafeArea(
+          child: VxBox(
+                  child: VStack([
+            ZStack(
+              [
+                PictureWidget(),
+                Row(
+                  children: [
+                    VStack([
+                      if (context.isMobile) 140.heightBox else 40.heightBox,
+                      nameWidget,
+                      20.heightBox,
+                      VxBox()
+                          .color(Colors.deepOrange)
+                          .size(60, 10)
+                          .make()
+                          .px4()
+                          .shimmer(primaryColor: Colors.deepOrange),
+                      30.heightBox,
+                    ]).pSymmetric(
+                      h: context.percentWidth * 10,
+                      v: 32,
+                    ),
+                    Expanded(
+                      child: VxResponsive(
+                        medium: IntroductionWidget()
+                            .pOnly(left: 120)
+                            .h(context.percentHeight * 60),
+                        large: IntroductionWidget()
+                            .pOnly(left: 120)
+                            .h(context.percentHeight * 60),
+                        fallback: const Offstage(),
                       ),
-                      Expanded(
-                        child: VxResponsive(
-                          medium: IntroductionWidget()
-                              .pOnly(left: 120)
-                              .h(context.percentHeight * 60),
-                          large: IntroductionWidget()
-                              .pOnly(left: 120)
-                              .h(context.percentHeight * 60),
-                          fallback: const Offstage(),
-                        ),
-                      ),
-                    ],
-                  ).w(context.screenWidth),
-                ],
-              )
-            ]))
-                .size(context.screenWidth * 100, context.percentHeight * 60)
-                .color(Coolors.primaryColor)
-                .make(),
-          ),
-          if (context.isMobile) IntroductionWidget().p16(),
-        ],
-      ),
+                    ),
+                  ],
+                ).w(context.screenWidth),
+              ],
+            )
+          ]))
+              .size(context.screenWidth * 100, context.percentHeight * 60)
+              .color(Coolors.primaryColor)
+              .make(),
+        ),
+        if (context.isMobile) IntroductionWidget().p16(),
+      ],
     );
   }
 }

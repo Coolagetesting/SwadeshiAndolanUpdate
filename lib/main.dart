@@ -16,8 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int pageIndex = 0;
 
+  int pageIndex = 0;
   Widget page() {
     if (pageIndex == 0) {
       return SliverHome();
@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     Widget navbar() {
       return LayoutBuilder(
         builder: (context, constraints) {
@@ -119,7 +120,7 @@ class _MyAppState extends State<MyApp> {
                   width: 300,
                 ),                
                  Row(
-                   mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       MaterialButton(
@@ -196,4 +197,5 @@ class _MyAppState extends State<MyApp> {
       )),
     );
   }
+
 }

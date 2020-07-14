@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:swadeshiandolan/firebase/database.dart';
 import 'package:swadeshiandolan/models/item.dart';
+import 'package:swadeshiandolan/models/item_prod.dart';
 import 'package:swadeshiandolan/pages/frontpage/footer.dart';
 import 'package:swadeshiandolan/pages/frontpage/header.dart';
 import 'package:swadeshiandolan/pages/frontpage/middle.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
+import 'package:swadeshiandolan/widgets/item1.dart';
 import 'package:swadeshiandolan/widgets/item2.dart';
 import 'package:swadeshiandolan/widgets/item_app.dart';
 
@@ -99,15 +101,6 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   unselectedLabelColor: Colors.white,
                   tabs: activeTab == 0 ? appList : productList),
               pinned: true,
-              expandedHeight: 900.0,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Column(
-                  children: [
-                    HeaderScreen(),
-                    MiddleScreen(),
-                  ],
-                ),
-              ),
             ),
             sliverRemaining(),
             // SliverList(
@@ -248,15 +241,14 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
       },
     );
 
-    // return list1;
-
     return CustomScrollView(
       slivers: [
-        // list1,
-
         SliverList(
+        
           delegate: SliverChildListDelegate(
             <Widget>[
+              HeaderScreen(),
+              MiddleScreen(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
                 child: Row(
@@ -291,7 +283,10 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              list1
+              Expanded(
+                child: list1,
+              ),
+              FooterScreen()
             ],
           ),
         ),
@@ -316,8 +311,8 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                 children:
                     List.generate(snapshot.data.documents.length, (index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
-                  Item itemModel = Item.fromDocument(doc);
-                  return Item2(item: itemModel);
+                  ItemProd itemModel = ItemProd.fromDocument(doc);
+                  return Item1(item : itemModel);
                 }),
                 shrinkWrap: true,
               )
@@ -351,6 +346,8 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
         SliverList(
           delegate: SliverChildListDelegate(
             <Widget>[
+              HeaderScreen(),
+              MiddleScreen(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
                 child: Row(
@@ -385,7 +382,8 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              list1
+              list1,
+              FooterScreen()
             ],
           ),
         )

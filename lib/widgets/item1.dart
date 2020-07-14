@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:swadeshiandolan/models/item.dart';
+import 'package:swadeshiandolan/models/item_prod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Item1 extends StatelessWidget {
-  final Item item;
+  final ItemProd item;
 
   Item1({this.item});
 
@@ -51,7 +51,7 @@ class Item1 extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text(item.rating,
+                                        Text('Rating',
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w700,
@@ -71,7 +71,7 @@ class Item1 extends StatelessWidget {
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text(item.usersNo,
+                                      child: Text('Users No',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w700)),
@@ -150,7 +150,7 @@ class Item1 extends StatelessWidget {
                         Expanded(
                           child: MaterialButton(
                             onPressed: () {
-                              launch(item.android);
+                              launch('kfe');
                             },
                             child: Text(
                               "Download Android",
@@ -161,7 +161,7 @@ class Item1 extends StatelessWidget {
                         Expanded(
                           child: MaterialButton(
                             onPressed: () {
-                              launch(item.ios);
+                              launch('efkk');
                             },
                             child: Text(
                               "Download IOS",

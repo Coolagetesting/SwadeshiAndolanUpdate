@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swadeshiandolan/firebase/database.dart';
 import 'package:swadeshiandolan/models/item.dart';
+import 'package:swadeshiandolan/models/item_prod.dart';
 import 'package:swadeshiandolan/widgets/item1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class _AppContainerState extends State<AppContainer> {
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
-                  Item itemModel = Item.fromDocument(doc);
+                  ItemProd itemModel = ItemProd.fromDocument(doc);
                   return Item1(item: itemModel);
                 },
               )

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swadeshiandolan/firebase/database.dart';
 import 'package:swadeshiandolan/models/item.dart';
+import 'package:swadeshiandolan/models/item_prod.dart';
 import 'package:swadeshiandolan/widgets/item1.dart';
 import 'package:flutter/material.dart';
 import 'package:swadeshiandolan/widgets/item_app.dart';
@@ -360,7 +361,7 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
                 children:
                     List.generate(snapshot.data.documents.length, (index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
-                  Item itemModel = Item.fromDocument(doc);
+                  ItemProd itemModel = ItemProd.fromDocument(doc);
                   return Item1(item: itemModel);
                 }),
                 primary: false,
