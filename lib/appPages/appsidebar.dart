@@ -116,7 +116,7 @@ class _AppContainerState extends State<AppContainer> {
                           },
                           child: Container(
                               padding: const EdgeInsets.all(20),
-                              child: Icon(Icons.search)),
+                              child: Icon(Icons.search,color: Colors.white,)),
                         ),
                         Container(
                             child: Expanded(
@@ -143,8 +143,10 @@ class _AppContainerState extends State<AppContainer> {
                           itemCount: menuItems.length,
                           itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
-                                  sidebarOpen = false;
-                                  selectedMenuItem = index;
+                                  // sidebarOpen = false;
+                                  setState((){
+                                    selectedMenuItem = index;
+                                  });
                                   setSidebarState();
                                 },
                                 child: MenuItem(

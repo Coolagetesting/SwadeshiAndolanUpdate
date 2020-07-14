@@ -114,6 +114,7 @@ class Item1 extends StatelessWidget {
                               shadowColor: Color(0x802196F3),
                               shape: CircleBorder(),
                               child: CircleAvatar(
+                                radius: 50,
                                 backgroundImage: NetworkImage(item.imageUrl),
                               )),
                         ),
@@ -143,18 +144,13 @@ class Item1 extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 4.0),
                   child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.purple,
-                      child: Image.asset(item.reviewer.substring(0, 1)),
-                    ),
-                    title: Text("Instead", style: TextStyle()),
                     subtitle: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: MaterialButton(
                             onPressed: () {
-                              launch("  firebase  play store link ");
+                              launch(item.android);
                             },
                             child: Text(
                               "Download Android",
@@ -165,7 +161,7 @@ class Item1 extends StatelessWidget {
                         Expanded(
                           child: MaterialButton(
                             onPressed: () {
-                              launch("  firebase  play store link ");
+                              launch(item.ios);
                             },
                             child: Text(
                               "Download IOS",

@@ -18,48 +18,56 @@ class HeaderScreen extends StatelessWidget {
         .make()
         .shimmer();
 
-    return SafeArea(
-      child: VxBox(
-              child: VStack([
-        ZStack(
-          [
-            PictureWidget(),
-            Row(
-              children: [
-                VStack([
-                  if (context.isMobile) 140.heightBox else 40.heightBox,
-                  nameWidget,
-                  20.heightBox,
-                  VxBox()
-                      .color(Colors.deepOrange)
-                      .size(60, 10)
-                      .make()
-                      .px4()
-                      .shimmer(primaryColor: Colors.deepOrange),
-                  30.heightBox,
-                ]).pSymmetric(
-                  h: context.percentWidth * 10,
-                  v: 32,
-                ),
-                Expanded(
-                  child: VxResponsive(
-                    medium: IntroductionWidget()
-                        .pOnly(left: 120)
-                        .h(context.percentHeight * 60),
-                    large: IntroductionWidget()
-                        .pOnly(left: 120)
-                        .h(context.percentHeight * 60),
-                    fallback: const Offstage(),
-                  ),
-                )
-              ],
-            ).w(context.screenWidth),
-          ],
-        )
-      ]))
-          .size(context.screenWidth * 100, context.percentHeight * 60)
-          .color(Coolors.primaryColor)
-          .make(),
+    return Expanded(
+          child: Column(
+            children: [
+              SafeArea(
+        child: VxBox(
+                    child: VStack([
+              ZStack(
+                [
+                  PictureWidget(),
+                  Row(
+                    children: [
+                      VStack([
+                        if (context.isMobile) 140.heightBox else 40.heightBox,
+                        nameWidget,
+                        20.heightBox,
+                        VxBox()
+                            .color(Colors.deepOrange)
+                            .size(60, 10)
+                            .make()
+                            .px4()
+                            .shimmer(primaryColor: Colors.deepOrange),
+                        30.heightBox,
+                      ]).pSymmetric(
+                        h: context.percentWidth * 10,
+                        v: 32,
+                      ),
+                      Expanded(
+                        child: VxResponsive(
+                          medium: IntroductionWidget()
+                              .pOnly(left: 120)
+                              .h(context.percentHeight * 60),
+                          large: IntroductionWidget()
+                              .pOnly(left: 120)
+                              .h(context.percentHeight * 60),
+                          fallback: const Offstage(),
+                        ),
+                      ),
+                    ],
+                  ).w(context.screenWidth),
+                ],
+              )
+        ]))
+                .size(context.screenWidth * 100, context.percentHeight * 60)
+                .color(Coolors.primaryColor)
+                .make(),
+      ),
+                if (context.isMobile) IntroductionWidget().p16(),
+
+            ],
+          ),
     );
   }
 }
@@ -84,7 +92,7 @@ class IntroductionWidget extends StatelessWidget {
               .make()
               .w(context.isMobile
                   ? context.screenWidth
-                  : context.percentWidth * 40),
+                  : context.percentWidth * 30),
           20.heightBox,
         ].vStack(),
       ],
@@ -101,16 +109,17 @@ class PictureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform(
-      alignment: context.isMobile ? Alignment.topCenter : Alignment.centerLeft,
-      origin: Offset(context.percentWidth * 24, 0),
-      transform: Matrix4.rotationY(pi),
-      child: Image.asset(
-        "assets/pic.png",
-        fit: BoxFit.cover,
-        height: context.percentHeight * 60,
-      ),
-    );
+    return Container(
+        alignment: Alignment.centerRight,
+        child: Transform(
+          origin: Offset(context.isMobile ? context.percentWidth*30 : context.percentWidth*5, 0),
+          transform: Matrix4.rotationY(pi),
+          child: Image.asset(
+            "assets/pic.png",
+            fit: BoxFit.cover,
+            height: context.percentHeight * 60,
+          ),
+        ));
   }
 }
 

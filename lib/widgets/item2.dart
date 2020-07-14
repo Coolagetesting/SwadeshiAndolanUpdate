@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshiandolan/models/item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Item2 extends StatelessWidget {
   final Item item;
@@ -9,7 +10,7 @@ class Item2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16.0),
+      padding: EdgeInsets.only(bottom: 16.0,left : 20),      
       child: Stack(
         children: <Widget>[
           /// Item card
@@ -20,7 +21,7 @@ class Item2 extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    /// Item description inside a material
+                    // / Item description inside a material
                     Container(
                       margin: EdgeInsets.only(top: 24.0),
                       child: Material(
@@ -110,7 +111,7 @@ class Item2 extends StatelessWidget {
                       ),
                     ),
 
-                    /// Item image
+                    // / Item image
                     Align(
                       alignment: Alignment.topRight,
                       child: Padding(
@@ -122,6 +123,7 @@ class Item2 extends StatelessWidget {
                             shadowColor: Color(0x802196F3),
                             shape: CircleBorder(),
                             child: CircleAvatar(
+                              radius: 50,
                                 backgroundImage: NetworkImage(item.imageUrl)),
                           ),
                         ),
@@ -131,7 +133,6 @@ class Item2 extends StatelessWidget {
                 )),
           ),
 
-          /// Review
           Padding(
             padding: EdgeInsets.only(
               top: 160.0,
@@ -147,15 +148,35 @@ class Item2 extends StatelessWidget {
               ),
               child: Container(
                 margin: EdgeInsets.symmetric(vertical: 4.0),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.purple,
-                    child: Text(item.reviewer.substring(0, 1)),
+                child:  ListTile(
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              launch(item.android);
+                            },
+                            child: Text(
+                              "Download Android",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              launch(item.ios);
+                            },
+                            child: Text(
+                              "Download IOS",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  title: Text(item.reviewer),
-                  subtitle: Text(item.review,
-                      maxLines: 2, overflow: TextOverflow.ellipsis),
-                ),
               ),
             ),
           )

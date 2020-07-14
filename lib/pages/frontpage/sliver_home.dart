@@ -1,65 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:swadeshiandolan/firebase/database.dart';
 import 'package:swadeshiandolan/models/item.dart';
-import 'package:swadeshiandolan/widgets/item1.dart';
-import 'package:flutter/material.dart';
+import 'package:swadeshiandolan/pages/frontpage/footer.dart';
+import 'package:swadeshiandolan/pages/frontpage/header.dart';
+import 'package:swadeshiandolan/pages/frontpage/middle.dart';
+import 'package:swadeshiandolan/utils/colors.dart';
+import 'package:swadeshiandolan/widgets/item2.dart';
 import 'package:swadeshiandolan/widgets/item_app.dart';
-import 'package:velocity_x/velocity_x.dart';
 
-import '../../widgets/item2.dart';
+int activeTab = 0;
 
-class ShowCase extends StatefulWidget {
+class SliverHome extends StatefulWidget {
   @override
-  _ShowCaseState createState() => _ShowCaseState();
+  _SliverHomeState createState() => _SliverHomeState();
 }
 
-class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
+class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
   TabController _appController;
   TabController _productController;
-  TabController _tabController;
 
-  int selectedMenuItem = 0;
-
-  final List<String> menuItems = [
-    "Mobiles",
-    "Cold Drinks",
-    "Soap",
-    "Electronics",
-    "Computer and tablets",
-    "Online Shopping",
-    "Car",
-    "Toothbrush",
-    "Tea Coffee",
-    "Blade",
-    "Shaving Cream",
-    "Shampoo",
-    "Talcum Powder",
-    "Milk",
-    "Mobile Connection",
-    "Textile",
-    "Bikes",
-    "Footwear",
-    "Cloths",
-    "Garments",
-    "Watches",
-    "Child Food",
-    "Salt",
-    "Icecream",
-    "Biscut",
-    "Ketchup",
-    "Snacks",
-    "water",
-    "tonic",
-    "oil",
-    "Washing Powder",
-    "Cosmetics",
-    "Pen",
-  ];
-
-  List<Tab> tabList = [
-    new Tab(text: 'Applocations'),
-    new Tab(text: 'Products'),
-  ];
   List<Tab> appList = [
     new Tab(text: 'Social'),
     new Tab(text: 'Chatting'),
@@ -119,52 +80,69 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
     super.initState();
     _appController = new TabController(length: 16, vsync: this);
     _productController = TabController(length: 33, vsync: this);
-    _tabController = new TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: <Widget>[
-          TabBar(
-              isScrollable: true,
-              controller: _tabController,
-              indicatorColor: Colors.orange,
-              labelColor: Colors.orange,
-              unselectedLabelColor: Colors.white,
-              tabs: tabList),
-          Expanded(
-            flex: 1,
-            child: TabBarView(
-              children: [
-                appBar(),
-                productsBar(),
-              ],
-              controller: _tabController,
+    return Scaffold(
+        backgroundColor: Coolors.primaryColor,
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: Coolors.primaryColor,
+              bottom: TabBar(
+                  isScrollable: true,
+                  controller:
+                      activeTab == 0 ? _appController : _productController,
+                  indicatorColor: Colors.orange,
+                  labelColor: Colors.orange,
+                  unselectedLabelColor: Colors.white,
+                  tabs: activeTab == 0 ? appList : productList),
+              pinned: true,
+              expandedHeight: 900.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: [
+                    HeaderScreen(),
+                    MiddleScreen(),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+            sliverRemaining(),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                <Widget>[FooterScreen()],
+              ),
+            ),
+          ],
+        ));
   }
 
-  Widget productsBar() {
-    return Column(
-      children: <Widget>[
-        TabBar(
-            isScrollable: true,
-            controller: _productController,
-            indicatorColor: Colors.orange,
-            labelColor: Colors.orange,
-            unselectedLabelColor: Colors.white,
-            tabs: productList),
-        Expanded(
-          flex: 1,
-          child: TabBarView(
-            children: [
+  Widget sliverRemaining() {
+    return activeTab == 0
+        ? SliverFillRemaining(
+            child: TabBarView(children: [
+              itemList('Social'),
+              itemList('Chatting'),
+              itemList('Shopping'),
+              itemList('Scanning'),
+              itemList('Office'),
+              itemList('Music'),
+              itemList('Browsers'),
+              itemList('Security'),
+              itemList('News'),
+              itemList('Finance'),
+              itemList('Mail'),
+              itemList('Utility'),
+              itemList('Video Calling'),
+              itemList('File Sharing'),
+              itemList('Video Editing'),
+              itemList('Photo Editing'),
+            ], controller: _appController),
+          )
+        : SliverFillRemaining(
+            child: TabBarView(children: [
               itemsList2('Mobiles'),
               itemsList2("Cold Drinks"),
               itemsList2("Soap"),
@@ -198,50 +176,8 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
               itemsList2("Washing Powder"),
               itemsList2("Cosmetics"),
               itemsList2("Pen"),
-            ],
-            controller: _productController,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget appBar() {
-    return Column(
-      children: <Widget>[
-        TabBar(
-            isScrollable: true,
-            controller: _appController,
-            indicatorColor: Colors.orange,
-            labelColor: Colors.orange,
-            unselectedLabelColor: Colors.white,
-            tabs: appList),
-        Expanded(
-          flex: 1,
-          child: TabBarView(
-            children: [
-              itemList('Social'),
-              itemList('Chatting'),
-              itemList('Shopping'),
-              itemList('Scanning'),
-              itemList('Office'),
-              itemList('Music'),
-              itemList('Browsers'),
-              itemList('Security'),
-              itemList('News'),
-              itemList('Finance'),
-              itemList('Mail'),
-              itemList('Utility'),
-              itemList('Video Calling'),
-              itemList('File Sharing'),
-              itemList('Video Editing'),
-              itemList('Photo Editing'),
-            ],
-            controller: _appController,
-          ),
-        ),
-      ],
-    );
+            ], controller: _productController),
+          );
   }
 
   Widget itemList(String item) {
@@ -251,14 +187,13 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
 
     var list1 = StreamBuilder(
       stream: itemsRef.document('Apps').collection(item).snapshots(),
-      builder: (context, snapshot) {
+      builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ? Expanded(
-              child :GridView.count(
-                crossAxisCount: context.isMobile ? 1 : 3,
-                physics: ScrollPhysics(),
+            ? GridView.count(
+                crossAxisCount: size.width < 800 ? 1 : 3,
+                // physics: NeverScrollableScrollPhysics(),
                 childAspectRatio:
-                    context.isMobile ? 2 : (itemWidth / itemHeight),
+                    size.width < 800 ? 2 : (itemWidth / itemHeight),
                 children:
                     List.generate(snapshot.data.documents.length, (index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
@@ -266,7 +201,7 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
                   return Item2(item: itemModel);
                 }),
                 shrinkWrap: true,
-              ))
+              )
             : Container(
                 child: Text('No Data Available'),
               );
@@ -292,39 +227,36 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
       },
     );
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Chinese Apps Banned',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                  ),
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate(
+            <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Chinese Apps Banned',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          Container(
-            height: 140,
-            child: list2,
-            alignment: Alignment.centerLeft,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
+              ),
+              Container(
+                height: 140,
+                child: list2,
+                alignment: Alignment.centerLeft,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
+                child: Text(
                   'Alternatives',
                   style: TextStyle(
                     color: Colors.white,
@@ -333,12 +265,12 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
                     letterSpacing: 1.0,
                   ),
                 ),
-              ],
-            ),
+              ),
+              list1
+            ],
           ),
-          list1
-        ],
-      ),
+        )
+      ],
     );
   }
 
@@ -349,22 +281,21 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
 
     var list1 = StreamBuilder(
       stream: itemsRef.document('Products').collection(item).snapshots(),
-      builder: (context, snapshot) {
+      builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ? Expanded(
-              child : GridView.count(
-                crossAxisCount: context.isMobile ? 1 : 3,
+            ? GridView.count(
+                crossAxisCount: size.width < 800 ? 1 : 3,
+                // physics: NeverScrollableScrollPhysics(),
                 childAspectRatio:
-                    context.isMobile ? 2 : (itemWidth / itemHeight),
+                    size.width < 800 ? 1.5 : (itemWidth / itemHeight),
                 children:
                     List.generate(snapshot.data.documents.length, (index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
                   Item itemModel = Item.fromDocument(doc);
-                  return Item1(item: itemModel);
+                  return Item2(item: itemModel);
                 }),
-                primary: false,
                 shrinkWrap: true,
-              ))
+              )
             : Container(
                 child: Text('No Data Available'),
               );
@@ -375,54 +306,51 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
       stream: itemsAppsRef.document('Products').collection(item).snapshots(),
       builder: (context, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ? Expanded(
-              child : ListView.builder(
+            ? ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot doc = snapshot.data.documents[index];
                   return ItemApp(name: doc['name'], image: doc['image']);
                 },
-                primary: false,
                 shrinkWrap: true,
-              ))
+              )
             : Container(
                 child: Text('No Data Available'),
               );
       },
     );
 
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Chinese Products',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                  ),
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate(
+            <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Chinese Products',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          Container(
-            height: 140,
-            child: list2,
-            alignment: Alignment.centerLeft,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
+              ),
+              Container(
+                height: 140,
+                child: list2,
+                alignment: Alignment.centerLeft,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
+                child: Text(
                   'Alternatives',
                   style: TextStyle(
                     color: Colors.white,
@@ -431,12 +359,12 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
                     letterSpacing: 1.0,
                   ),
                 ),
-              ],
-            ),
+              ),
+              list1
+            ],
           ),
-          list1,
-        ],
-      ),
+        )
+      ],
     );
   }
 }

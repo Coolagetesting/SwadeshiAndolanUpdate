@@ -16,14 +16,14 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Coolors.primaryColor,
-        body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            HeaderScreen(),
-            if (context.isMobile) IntroductionWidget().p16(),
-            MiddleScreen(),
-            ShowCase(),
-            FooterScreen(),
-          ]),
-        ));
+        body: ListView(
+          shrinkWrap: true,
+          children: [
+          HeaderScreen(),
+          if (context.isMobile) IntroductionWidget().p16(),
+          MiddleScreen(),
+          ShowCase(),
+          FooterScreen(),
+        ]));
   }
 }
