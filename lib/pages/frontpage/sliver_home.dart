@@ -20,8 +20,67 @@ class SliverHome extends StatefulWidget {
 }
 
 class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
+  int categorySelected = 0;
+  int categorySelectedProd = 0;
+
   TabController _appController;
   TabController _productController;
+
+  final List<String> appString = [
+    "Social",
+    "Chatting",
+    "Shopping",
+    "Scanning",
+    "Office",
+    "Music",
+    "Browsers",
+    "Games",
+    "News",
+    "Security",
+    "Finance",
+    "Mail",
+    "Utility",
+    "Video Calling",
+    "File Sharing",
+    "Video Editing",
+    "Photo Editing",
+  ];
+
+  final List<String> productString = [
+    "Mobiles",
+    "Cold Drinks",
+    "Soap",
+    "Electronics",
+    "Computer and tablets",
+    "Online Shopping",
+    "Car",
+    "Toothbrush",
+    "Tea Coffee",
+    "Blade",
+    "Shaving Cream",
+    "Shampoo",
+    "Talcum Powder",
+    "Milk",
+    "Mobile Connection",
+    "Textile",
+    "Bikes",
+    "Footwear",
+    "Cloths",
+    "Garments",
+    "Watches",
+    "Child Food",
+    "Salt",
+    "Icecream",
+    "Biscut",
+    "Ketchup",
+    "Snacks",
+    "water",
+    "tonic",
+    "oil",
+    "Washing Powder",
+    "Cosmetics",
+    "Pen",
+  ];
 
   List<Tab> appList = [
     new Tab(text: 'Social'),
@@ -93,6 +152,13 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
             SliverAppBar(
               backgroundColor: Coolors.primaryColor,
               title: TabBar(
+                  onTap: (index) {
+                    setState(() {
+                      activeTab == 0
+                          ? categorySelected = index
+                          : categorySelectedProd = index;
+                    });
+                  },
                   isScrollable: true,
                   controller:
                       activeTab == 0 ? _appController : _productController,
@@ -102,7 +168,14 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   tabs: activeTab == 0 ? appList : productList),
               pinned: true,
             ),
-            sliverRemaining(),
+            // sliverRemaining(),
+
+            SliverFillRemaining(
+              child: activeTab == 0
+                  ? itemList(appString[categorySelected])
+                  : itemsList2(productString[categorySelected]),
+            )
+
             // SliverList(
             //   delegate: SliverChildListDelegate(
             //     <Widget>[
@@ -182,40 +255,34 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     final double itemHeight = (size.height) / 2;
     final double itemWidth = size.width / 2;
 
+    print(size.width);
+    print('checking width dvncklll eojjjjjjjjjjjjjjjjjjjj fve');
+
     var list1 = StreamBuilder(
       stream: itemsRef.document('Apps').collection(item).snapshots(),
       builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ?
-            // return SliverGrid(
-            //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            //     maxCrossAxisExtent: 500.0,
-            //     crossAxisSpacing: 10.0,
-            //     childAspectRatio: size.width < 800 ? 1 : (itemWidth / itemHeight),
-            //   ),
-            //   delegate: SliverChildBuilderDelegate(
-            //     (BuildContext context, int index) {
-            //       DocumentSnapshot doc = snapshot.data.documents[index];
-            //       Item itemModel = Item.fromDocument(doc);
-            //       return Item2(item: itemModel);
-            //     },
-            //     childCount: snapshot.hasData ? snapshot.data.documents.length : 0,
-            //   ),
-            // );
-
-            GridView.count(
-                crossAxisCount: size.width < 800 ? 1 : 3,
-                // physics: NeverScrollableScrollPhysics(),
-                childAspectRatio:
-                    size.width < 800 ? 2 : (itemWidth / itemHeight),
-                children:
-                    List.generate(snapshot.data.documents.length, (index) {
-                  DocumentSnapshot doc = snapshot.data.documents[index];
-                  Item itemModel = Item.fromDocument(doc);
-                  return Item2(item: itemModel);
-                }),
-                shrinkWrap: true,
-              )
+            ? size.width < 800
+                ? ListView.builder(
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot doc = snapshot.data.documents[index];
+                      Item itemModel = Item.fromDocument(doc);
+                      return Item2(item: itemModel);
+                    },
+                    shrinkWrap: true,
+                  )
+                : GridView.count(
+                    crossAxisCount: 3,
+                    childAspectRatio: (itemWidth / itemHeight),
+                    shrinkWrap: true,
+                    children:
+                        List.generate(snapshot.data.documents.length, (index) {
+                      DocumentSnapshot doc = snapshot.data.documents[index];
+                      Item itemModel = Item.fromDocument(doc);
+                      return Item2(item: itemModel);
+                    }),
+                  )
             : Container(
                 child: Text('No Data Available'),
               );
@@ -244,7 +311,6 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     return CustomScrollView(
       slivers: [
         SliverList(
-        
           delegate: SliverChildListDelegate(
             <Widget>[
               HeaderScreen(),
@@ -283,9 +349,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              Expanded(
-                child: list1,
-              ),
+              list1,
               FooterScreen()
             ],
           ),
@@ -303,19 +367,28 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
       stream: itemsRef.document('Products').collection(item).snapshots(),
       builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ? GridView.count(
-                crossAxisCount: size.width < 800 ? 1 : 3,
-                // physics: NeverScrollableScrollPhysics(),
-                childAspectRatio:
-                    size.width < 800 ? 1.5 : (itemWidth / itemHeight),
-                children:
-                    List.generate(snapshot.data.documents.length, (index) {
-                  DocumentSnapshot doc = snapshot.data.documents[index];
-                  ItemProd itemModel = ItemProd.fromDocument(doc);
-                  return Item1(item : itemModel);
-                }),
-                shrinkWrap: true,
-              )
+            ? size.width < 800
+                ? ListView.builder(
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot doc = snapshot.data.documents[index];
+                      ItemProd itemModel = ItemProd.fromDocument(doc);
+                      return Item1(item: itemModel);
+                    },
+                    shrinkWrap: true,
+                  )
+                : GridView.count(
+                    crossAxisCount: 3,
+                    childAspectRatio:
+                       (itemWidth / itemHeight),
+                    children:
+                        List.generate(snapshot.data.documents.length, (index) {
+                      DocumentSnapshot doc = snapshot.data.documents[index];
+                      ItemProd itemModel = ItemProd.fromDocument(doc);
+                      return Item1(item: itemModel);
+                    }),
+                    shrinkWrap: true,
+                  )
             : Container(
                 child: Text('No Data Available'),
               );
