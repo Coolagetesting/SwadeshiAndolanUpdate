@@ -84,11 +84,11 @@ class IntroductionWidget extends StatelessWidget {
         [
           " - Swadeshi Andolan".text.gray500.widest.sm.make(),
           10.heightBox,
-          "The Swadeshi movement, part of the Indian independence movement and the developing . . . . . \nSwa means self or own and desh means country,"
+          "The Swadeshi movement, part of the Indian independence movement and the developing . . . \nSwa means self or own and desh means country,"
               .text
               .white
               .xl3
-              .maxLines(5)
+              .maxLines(6)
               .make()
               .w(context.isMobile
                   ? context.screenWidth
@@ -96,8 +96,8 @@ class IntroductionWidget extends StatelessWidget {
           20.heightBox,
         ].vStack(),
       ],
-      // crossAlignment: CrossAxisAlignment.center,
-      alignment: MainAxisAlignment.spaceEvenly,
+      // crossAlignment: CrossAxisAlignment.start,
+      alignment: MainAxisAlignment.center,
     );
   }
 }

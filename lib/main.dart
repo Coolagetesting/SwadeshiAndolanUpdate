@@ -1,4 +1,3 @@
-import 'package:swadeshiandolan/pages/frontpage/firstpage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swadeshiandolan/pages/frontpage/sliver_home.dart';
@@ -24,7 +23,7 @@ class _MyAppState extends State<MyApp> {
     } else if (pageIndex == 1) {
       return ReasonPage();
     } else {
-      return FirstScreen();
+      return SliverHome();
     }
   }
 

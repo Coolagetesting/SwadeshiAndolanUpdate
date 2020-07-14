@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swadeshiandolan/models/item_prod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Item1 extends StatelessWidget {
   final ItemProd item;
@@ -23,85 +22,71 @@ class Item1 extends StatelessWidget {
                   children: <Widget>[
                     /// Item description inside a material
                     Container(
-                      margin: EdgeInsets.only(top: 24.0),
+                      margin: EdgeInsets.only(top: 12.0),
                       child: Material(
                         elevation: 14.0,
                         borderRadius: BorderRadius.circular(12.0),
                         shadowColor: Color(0x802196F3),
                         color: Colors.white,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Padding(
-                            padding: EdgeInsets.all(24.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                /// Title and rating
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(item.name,
-                                        style: TextStyle(
-                                            color: Colors.blueAccent)),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text('Rating',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 34.0)),
-                                        Icon(Icons.star,
-                                            color: Colors.black, size: 24.0),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-
-                                /// Infos
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text('Users No',
+                        child: Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                            Color(0xFFDA4453),
+                            Color(0xFF89216B)
+                          ])),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  /// Title and rating
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(item.name,
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w700)),
-                                    ),
-                                    Text('Users',
-                                        style: TextStyle(color: Colors.black)),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Material(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        color: Colors.green,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Text(item.type,
-                                              style: TextStyle(
-                                                  color: Colors.black)),
+                                              fontSize : 27,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+
+                                  /// Infos
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Material(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          color: Colors.green,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Text(item.type != null ? item.type : 'Not Available',
+                                                style: TextStyle(
+                                                    color: Colors.black)),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-
                     /// Item image
                     Align(
                       alignment: Alignment.topRight,
@@ -115,7 +100,8 @@ class Item1 extends StatelessWidget {
                               shape: CircleBorder(),
                               child: CircleAvatar(
                                 radius: 50,
-                                backgroundImage: NetworkImage(item.imageUrl),
+                                backgroundColor: Color(0xFF89216B),
+                                child: Image.network(item.imageUrl,fit: BoxFit.fill,),
                               )),
                         ),
                       ),
@@ -125,57 +111,6 @@ class Item1 extends StatelessWidget {
           ),
 
           /// Review
-          Padding(
-            padding: EdgeInsets.only(top: 160.0, left: 32.0),
-            child: Material(
-              elevation: 12.0,
-              color: Colors.transparent,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xFF84fab0), Color(0xFF8fd3f4)],
-                        end: Alignment.topLeft,
-                        begin: Alignment.bottomRight)),
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 4.0),
-                  child: ListTile(
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              launch('kfe');
-                            },
-                            child: Text(
-                              "Download Android",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              launch('efkk');
-                            },
-                            child: Text(
-                              "Download IOS",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

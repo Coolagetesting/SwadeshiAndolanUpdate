@@ -11,6 +11,7 @@ import 'package:swadeshiandolan/utils/colors.dart';
 import 'package:swadeshiandolan/widgets/item1.dart';
 import 'package:swadeshiandolan/widgets/item2.dart';
 import 'package:swadeshiandolan/widgets/item_app.dart';
+import 'package:swadeshiandolan/widgets/progress.dart';
 
 int activeTab = 0;
 
@@ -48,38 +49,19 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
 
   final List<String> productString = [
     "Mobiles",
-    "Cold Drinks",
-    "Soap",
-    "Electronics",
-    "Computer and tablets",
-    "Online Shopping",
-    "Car",
-    "Toothbrush",
-    "Tea Coffee",
-    "Blade",
-    "Shaving Cream",
-    "Shampoo",
-    "Talcum Powder",
-    "Milk",
-    "Mobile Connection",
-    "Textile",
+    "AIR CONDITIONERS",
+    "Audio",
     "Bikes",
-    "Footwear",
-    "Cloths",
-    "Garments",
-    "Watches",
-    "Child Food",
-    "Salt",
-    "Icecream",
-    "Biscut",
-    "Ketchup",
-    "Snacks",
-    "water",
-    "tonic",
-    "oil",
-    "Washing Powder",
-    "Cosmetics",
-    "Pen",
+    "CCTV",
+    "Cameras",
+    "Car",
+    "Computer and tablets",
+    "Power Bank",
+    "REFRIGERATORS",
+    "Routers",
+    "Smart Watch",
+    "TV",
+    "WASHING MACHINES",
   ];
 
   List<Tab> appList = [
@@ -90,8 +72,9 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     new Tab(text: 'Office'),
     new Tab(text: 'Music'),
     new Tab(text: 'Browsers'),
-    new Tab(text: 'Security'),
+    new Tab(text: 'Games'),
     new Tab(text: 'News'),
+    new Tab(text: 'Security'),
     new Tab(text: 'Finance'),
     new Tab(text: 'Mail'),
     new Tab(text: 'Utility'),
@@ -100,47 +83,29 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     new Tab(text: 'Video Editing'),
     new Tab(text: 'Photo Editing'),
   ];
+  
   List<Tab> productList = [
     new Tab(text: 'Mobiles'),
-    new Tab(text: "Cold Drinks"),
-    new Tab(text: "Soap"),
-    new Tab(text: "Electronics"),
-    new Tab(text: "Computer and tablets"),
-    new Tab(text: "Online Shopping"),
-    new Tab(text: "Car"),
-    new Tab(text: "Toothbrush"),
-    new Tab(text: "Tea Coffee"),
-    new Tab(text: "Blade"),
-    new Tab(text: "Shaving Cream"),
-    new Tab(text: "Shampoo"),
-    new Tab(text: "Talcum Powder"),
-    new Tab(text: "Milk"),
-    new Tab(text: "Mobile Connection"),
-    new Tab(text: "Textile"),
+    new Tab(text: "A.C"),
+    new Tab(text: "Audio"),
     new Tab(text: "Bikes"),
-    new Tab(text: "Footwear"),
-    new Tab(text: "Cloths"),
-    new Tab(text: "Garments"),
-    new Tab(text: "Watches"),
-    new Tab(text: "Child Food"),
-    new Tab(text: "Salt"),
-    new Tab(text: "Icecream"),
-    new Tab(text: "Biscut"),
-    new Tab(text: "Ketchup"),
-    new Tab(text: "Snacks"),
-    new Tab(text: "water"),
-    new Tab(text: "tonic"),
-    new Tab(text: "oil"),
-    new Tab(text: "Washing Powder"),
-    new Tab(text: "Cosmetics"),
-    new Tab(text: "Pen"),
+    new Tab(text: "CCTV"),
+    new Tab(text: "Camera"),
+    new Tab(text: "Car"),
+    new Tab(text: "Computer & tablets"),
+    new Tab(text: "Power Bank"),
+    new Tab(text: "Refrigerator"),
+    new Tab(text: "Routers"),
+    new Tab(text: "Smart Watch"),
+    new Tab(text: "T.V"),
+    new Tab(text: "Washing Machines"),
   ];
 
   @override
   void initState() {
     super.initState();
-    _appController = new TabController(length: 16, vsync: this);
-    _productController = TabController(length: 33, vsync: this);
+    _appController = new TabController(length: 17, vsync: this);
+    _productController = TabController(length: 14, vsync: this);
   }
 
   @override
@@ -169,85 +134,13 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
               pinned: true,
             ),
             // sliverRemaining(),
-
             SliverFillRemaining(
               child: activeTab == 0
                   ? itemList(appString[categorySelected])
-                  : itemsList2(productString[categorySelected]),
+                  : itemsList2(productString[categorySelectedProd]),
             )
-
-            // SliverList(
-            //   delegate: SliverChildListDelegate(
-            //     <Widget>[
-            //       HeaderScreen(),
-            //       MiddleScreen(),
-            //       // FooterScreen()
-            //     ],
-            //   ),
-            // ),
           ],
         ));
-  }
-
-  Widget sliverRemaining() {
-    return activeTab == 0
-        ? SliverFillRemaining(
-            child: TabBarView(children: [
-              itemList('Social'),
-              itemList('Chatting'),
-              itemList('Shopping'),
-              itemList('Scanning'),
-              itemList('Office'),
-              itemList('Music'),
-              itemList('Browsers'),
-              itemList('Security'),
-              itemList('News'),
-              itemList('Finance'),
-              itemList('Mail'),
-              itemList('Utility'),
-              itemList('Video Calling'),
-              itemList('File Sharing'),
-              itemList('Video Editing'),
-              itemList('Photo Editing'),
-            ], controller: _appController),
-          )
-        : SliverFillRemaining(
-            child: TabBarView(children: [
-              itemsList2('Mobiles'),
-              itemsList2("Cold Drinks"),
-              itemsList2("Soap"),
-              itemsList2("Electronics"),
-              itemsList2("Computer and tablets"),
-              itemsList2("Online Shopping"),
-              itemsList2("Car"),
-              itemsList2("Toothbrush"),
-              itemsList2("Tea Coffee"),
-              itemsList2("Blade"),
-              itemsList2("Shaving Cream"),
-              itemsList2("Shampoo"),
-              itemsList2("Talcum Powder"),
-              itemsList2("Milk"),
-              itemsList2("Mobile Connection"),
-              itemsList2("Textile"),
-              itemsList2("Bikes"),
-              itemsList2("Footwear"),
-              itemsList2("Cloths"),
-              itemsList2("Garments"),
-              itemsList2("Watches"),
-              itemsList2("Child Food"),
-              itemsList2("Salt"),
-              itemsList2("Icecream"),
-              itemsList2("Biscut"),
-              itemsList2("Ketchup"),
-              itemsList2("Snacks"),
-              itemsList2("water"),
-              itemsList2("tonic"),
-              itemsList2("oil"),
-              itemsList2("Washing Powder"),
-              itemsList2("Cosmetics"),
-              itemsList2("Pen"),
-            ], controller: _productController),
-          );
   }
 
   Widget itemList(String item) {
@@ -255,15 +148,13 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     final double itemHeight = (size.height) / 2;
     final double itemWidth = size.width / 2;
 
-    print(size.width);
-    print('checking width dvncklll eojjjjjjjjjjjjjjjjjjjj fve');
-
     var list1 = StreamBuilder(
       stream: itemsRef.document('Apps').collection(item).snapshots(),
       builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
             ? size.width < 800
                 ? ListView.builder(
+                    physics: ScrollPhysics(),
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot doc = snapshot.data.documents[index];
@@ -283,9 +174,10 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                       return Item2(item: itemModel);
                     }),
                   )
-            : Container(
+            : snapshot.hasData ?  Container(
                 child: Text('No Data Available'),
-              );
+              ) : circularProgress();
+              
       },
     );
 
@@ -302,9 +194,9 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                 },
                 shrinkWrap: true,
               )
-            : Container(
+            : snapshot.hasData ?  Container(
                 child: Text('No Data Available'),
-              );
+              ) : circularProgress();
       },
     );
 
@@ -369,6 +261,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
             ? size.width < 800
                 ? ListView.builder(
+                    physics: ScrollPhysics(),
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot doc = snapshot.data.documents[index];
@@ -379,8 +272,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   )
                 : GridView.count(
                     crossAxisCount: 3,
-                    childAspectRatio:
-                       (itemWidth / itemHeight),
+                    childAspectRatio: (itemWidth / itemHeight),
                     children:
                         List.generate(snapshot.data.documents.length, (index) {
                       DocumentSnapshot doc = snapshot.data.documents[index];
@@ -389,9 +281,9 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                     }),
                     shrinkWrap: true,
                   )
-            : Container(
+            : snapshot.hasData ?  Container(
                 child: Text('No Data Available'),
-              );
+              ) : circularProgress();
       },
     );
 
@@ -408,9 +300,9 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                 },
                 shrinkWrap: true,
               )
-            : Container(
+            : snapshot.hasData ?  Container(
                 child: Text('No Data Available'),
-              );
+              ) : circularProgress();
       },
     );
 
