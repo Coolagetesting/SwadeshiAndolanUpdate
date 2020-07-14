@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-import 'package:swadeshiandolan/commingsoon.dart';
-import 'package:swadeshiandolan/pages/apppage.dart';
->>>>>>> f9cae7db3c76d32da627ae1cffcce46fa0e7980d
 import 'package:swadeshiandolan/pages/frontpage/firstpage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +7,7 @@ import 'package:swadeshiandolan/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(ComingSoon());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -22,7 +17,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int pageIndex = 0;
-
 
   Widget page() {
     if (pageIndex == 0) {
@@ -123,8 +117,9 @@ class _MyAppState extends State<MyApp> {
                   "assets/swadeshiandolan.png",
                   height: 50,
                   width: 300,
-                ),
+                ),                
                  Row(
+                   mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       MaterialButton(

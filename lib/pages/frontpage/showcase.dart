@@ -343,6 +343,7 @@ class _ShowCaseState extends State<ShowCase> with TickerProviderStateMixin {
   }
 
   Widget itemsList2(String item) {
+    
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height) / 2;
     final double itemWidth = size.width / 2;

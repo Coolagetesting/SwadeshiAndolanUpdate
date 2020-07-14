@@ -90,7 +90,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
           slivers: <Widget>[
             SliverAppBar(
               backgroundColor: Coolors.primaryColor,
-              bottom: TabBar(
+              title: TabBar(
                   isScrollable: true,
                   controller:
                       activeTab == 0 ? _appController : _productController,
@@ -110,11 +110,15 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
               ),
             ),
             sliverRemaining(),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                <Widget>[FooterScreen()],
-              ),
-            ),
+            // SliverList(
+            //   delegate: SliverChildListDelegate(
+            //     <Widget>[
+            //       HeaderScreen(),
+            //       MiddleScreen(),
+            //       // FooterScreen()
+            //     ],
+            //   ),
+            // ),
           ],
         ));
   }
@@ -189,7 +193,24 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
       stream: itemsRef.document('Apps').collection(item).snapshots(),
       builder: (cont, snapshot) {
         return (snapshot.hasData && snapshot.data.documents.length > 0)
-            ? GridView.count(
+            ?
+            // return SliverGrid(
+            //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            //     maxCrossAxisExtent: 500.0,
+            //     crossAxisSpacing: 10.0,
+            //     childAspectRatio: size.width < 800 ? 1 : (itemWidth / itemHeight),
+            //   ),
+            //   delegate: SliverChildBuilderDelegate(
+            //     (BuildContext context, int index) {
+            //       DocumentSnapshot doc = snapshot.data.documents[index];
+            //       Item itemModel = Item.fromDocument(doc);
+            //       return Item2(item: itemModel);
+            //     },
+            //     childCount: snapshot.hasData ? snapshot.data.documents.length : 0,
+            //   ),
+            // );
+
+            GridView.count(
                 crossAxisCount: size.width < 800 ? 1 : 3,
                 // physics: NeverScrollableScrollPhysics(),
                 childAspectRatio:
@@ -227,8 +248,12 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
       },
     );
 
+    // return list1;
+
     return CustomScrollView(
       slivers: [
+        // list1,
+
         SliverList(
           delegate: SliverChildListDelegate(
             <Widget>[
@@ -269,7 +294,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
               list1
             ],
           ),
-        )
+        ),
       ],
     );
   }

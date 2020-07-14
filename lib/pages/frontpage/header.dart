@@ -19,10 +19,11 @@ class HeaderScreen extends StatelessWidget {
         .shimmer();
 
     return Expanded(
-          child: Column(
-            children: [
-              SafeArea(
-        child: VxBox(
+      child: Column(
+        children: [
+          SizedBox(height: 50,),
+          SafeArea(
+            child: VxBox(
                     child: VStack([
               ZStack(
                 [
@@ -59,15 +60,14 @@ class HeaderScreen extends StatelessWidget {
                   ).w(context.screenWidth),
                 ],
               )
-        ]))
+            ]))
                 .size(context.screenWidth * 100, context.percentHeight * 60)
                 .color(Coolors.primaryColor)
                 .make(),
-      ),
-                if (context.isMobile) IntroductionWidget().p16(),
-
-            ],
           ),
+          if (context.isMobile) IntroductionWidget().p16(),
+        ],
+      ),
     );
   }
 }
@@ -112,7 +112,11 @@ class PictureWidget extends StatelessWidget {
     return Container(
         alignment: Alignment.centerRight,
         child: Transform(
-          origin: Offset(context.isMobile ? context.percentWidth*30 : context.percentWidth*5, 0),
+          origin: Offset(
+              context.isMobile
+                  ? context.percentWidth * 30
+                  : context.percentWidth * 5,
+              0),
           transform: Matrix4.rotationY(pi),
           child: Image.asset(
             "assets/pic.png",
