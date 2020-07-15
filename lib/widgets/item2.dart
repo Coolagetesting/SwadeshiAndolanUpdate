@@ -10,7 +10,7 @@ class Item2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16.0,left : 20),      
+      padding: EdgeInsets.only(bottom: 16.0, left: 20),
       child: Stack(
         children: <Widget>[
           /// Item card
@@ -51,8 +51,10 @@ class Item2 extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(item.name,
-                                          style:
-                                              TextStyle(color: Colors.white)),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold)),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -63,7 +65,7 @@ class Item2 extends StatelessWidget {
                                               style: TextStyle(
                                                   color: Colors.amber,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 34.0)),
+                                                  fontSize: 30.0)),
                                         ],
                                       ),
                                     ],
@@ -123,7 +125,7 @@ class Item2 extends StatelessWidget {
                             shadowColor: Color(0x802196F3),
                             shape: CircleBorder(),
                             child: CircleAvatar(
-                              radius: 50,
+                                radius: 50,
                                 backgroundImage: NetworkImage(item.imageUrl)),
                           ),
                         ),
@@ -148,35 +150,35 @@ class Item2 extends StatelessWidget {
               ),
               child: Container(
                 margin: EdgeInsets.symmetric(vertical: 4.0),
-                child:  ListTile(
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              launch(item.android);
-                            },
-                            child: Text(
-                              "Download Android",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                child: ListTile(
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: MaterialButton(
+                          onPressed: () {
+                            launch(item.android);
+                          },
+                          child: Text(
+                            "Download Android",
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
-                        Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              launch(item.ios);
-                            },
-                            child: Text(
-                              "Download IOS",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                      ),
+                      Expanded(
+                        child: MaterialButton(
+                          onPressed: () {
+                            launch(item.ios);
+                          },
+                          child: Text(
+                            "Download IOS",
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
               ),
             ),
           )

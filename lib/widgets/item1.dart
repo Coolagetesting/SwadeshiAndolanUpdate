@@ -51,7 +51,7 @@ class Item1 extends StatelessWidget {
                                     children: <Widget>[
                                       Text(item.name,
                                           style: TextStyle(
-                                              fontSize : 27,
+                                              fontSize: 27,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold)),
                                     ],
@@ -72,7 +72,10 @@ class Item1 extends StatelessWidget {
                                           color: Colors.green,
                                           child: Padding(
                                             padding: EdgeInsets.all(4.0),
-                                            child: Text(item.type != null ? item.type : 'Not Available',
+                                            child: Text(
+                                                item.type != null
+                                                    ? item.type
+                                                    : 'Not Available',
                                                 style: TextStyle(
                                                     color: Colors.black)),
                                           ),
@@ -87,6 +90,7 @@ class Item1 extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     /// Item image
                     Align(
                       alignment: Alignment.topRight,
@@ -101,7 +105,10 @@ class Item1 extends StatelessWidget {
                               child: CircleAvatar(
                                 radius: 50,
                                 backgroundColor: Color(0xFF89216B),
-                                child: Image.network(item.imageUrl,fit: BoxFit.fill,),
+                                child: Image.network(
+                                  item.imageUrl,
+                                  fit: BoxFit.fill,
+                                ),
                               )),
                         ),
                       ),

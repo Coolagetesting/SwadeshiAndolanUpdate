@@ -84,11 +84,11 @@ class IntroductionWidget extends StatelessWidget {
         [
           " - Swadeshi Andolan".text.gray500.widest.sm.make(),
           10.heightBox,
-          "The Swadeshi movement, part of the Indian independence movement and the developing . . . \nSwa means self or own and desh means country,"
+          "Use Indian, Support Indians Let's bring the Golden Bird back to its nest by adopting and supporting Indian Goods . \nBring forth the Swadeshi Andolan. \nSupport Swadeshi! \nPrioritize Swadeshi!"
               .text
               .white
               .xl3
-              .maxLines(6)
+              .maxLines(10)
               .make()
               .w(context.isMobile
                   ? context.screenWidth
