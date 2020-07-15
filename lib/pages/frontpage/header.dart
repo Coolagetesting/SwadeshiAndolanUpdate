@@ -12,7 +12,7 @@ class HeaderScreen extends StatelessWidget {
         .text
         .orange600
         .xl6
-        .lineHeight(1)
+        .lineHeight(1.2)
         .size(context.isMobile ? 15 : 20)
         .bold
         .make()
@@ -84,7 +84,7 @@ class IntroductionWidget extends StatelessWidget {
         [
           " - Swadeshi Andolan".text.gray500.widest.sm.make(),
           10.heightBox,
-          "Use Indian, Support Indians Let's bring the Golden Bird back to its nest by adopting and supporting Indian Goods . \nBring forth the Swadeshi Andolan. \nSupport Swadeshi! \nPrioritize Swadeshi!"
+          "\"Use Indian, Support Indians\" Let's bring the Golden Bird back to it's nest by adopting and supporting Indian Goods . \nBring forth the Swadeshi Andolan. \nSupport Swadeshi! \nPrioritize Swadeshi!"
               .text
               .white
               .xl3
