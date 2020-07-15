@@ -168,10 +168,10 @@ class _ReasonPageState extends State<ReasonPage> {
             bottom: TabBar(
               indicatorColor: Color(0xff9962D0),
               tabs: [
+                Tab(icon: Icon(FontAwesomeIcons.chartPie)),
                 Tab(
                   icon: Icon(FontAwesomeIcons.solidChartBar),
                 ),
-                Tab(icon: Icon(FontAwesomeIcons.chartPie)),
                 Tab(icon: Icon(FontAwesomeIcons.chartLine)),
               ],
             ),
