@@ -5,7 +5,7 @@ import 'package:swadeshiandolan/pages/reasion.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-bool english = true;
+bool english;
 
 void main() {
   runApp(MyApp());
@@ -17,46 +17,6 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MaterialButton(
-              onPressed: () {
-                setState(() {
-                  english = false;
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp()));
-                });
-              },
-              child: Text("Hindi"),
-            ),
-            MaterialButton(
-              onPressed: () {
-                setState(() {
-                  english = true;
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp()));
-                });
-              },
-              child: Text("English"),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   int pageIndex = 0;
   Widget page() {
     if (pageIndex == 0) {
@@ -217,6 +177,28 @@ class _MyAppState extends State<MyApp> {
       );
     }
 
+    return Scaffold(
+      body: Container(
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          navbar(),
+          Expanded(child: page()),
+        ],
+      )),
+    );
+  }
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Swadeshi Andolan',
@@ -225,14 +207,34 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.poppinsTextTheme(),
         brightness: Brightness.light,
       ),
-      home: Container(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          navbar(),
-          Expanded(child: page()),
-        ],
-      )),
+      home: english !=null  ? Language() : Container(
+        color: Colors.green,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  english = false;
+                });
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => Language()));
+              },
+              child: Text("Hindi"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  english = true;
+                });
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => Language()));
+              },
+              child: Text("English"),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
