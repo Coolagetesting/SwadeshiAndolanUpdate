@@ -5,8 +5,48 @@ import 'package:swadeshiandolan/pages/reasion.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+bool english = true;
+
 void main() {
   runApp(MyApp());
+}
+
+class Language extends StatefulWidget {
+  @override
+  _LanguageState createState() => _LanguageState();
+}
+
+class _LanguageState extends State<Language> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                english = false;
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyApp()));
+              });
+            },
+            child: Text("Hindi"),
+          ),
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                english = true;
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyApp()));
+              });
+            },
+            child: Text("English"),
+          )
+        ],
+      ),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -15,7 +55,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   int pageIndex = 0;
   Widget page() {
     if (pageIndex == 0) {
@@ -29,7 +68,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     Widget navbar() {
       return LayoutBuilder(
         builder: (context, constraints) {
@@ -117,60 +155,59 @@ class _MyAppState extends State<MyApp> {
                   "assets/swadeshiandolan.png",
                   height: 50,
                   width: 300,
-                ),                
-                 Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            activeTab = 0;
-                          });
-                        },
-                        child: Text(
-                          "Apps",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          activeTab = 0;
+                        });
+                      },
+                      child: Text(
+                        "Apps",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            activeTab = 1;
-                          });
-                        },
-                        child: Text(
-                          "Products",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          activeTab = 1;
+                        });
+                      },
+                      child: Text(
+                        "Products",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            pageIndex == 0 ? pageIndex = 1 : pageIndex = 0;
-                          });
-                        },
-                        child: Text(
-                          pageIndex == 0 ? 'Stats' : 'Home',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          pageIndex == 0 ? pageIndex = 1 : pageIndex = 0;
+                        });
+                      },
+                      child: Text(
+                        pageIndex == 0 ? 'Stats' : 'Home',
+                        style: TextStyle(color: Colors.white),
                       ),
-                      MaterialButton(
-                        color: Colors.pink,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0))),
-                        onPressed: () {
-                          launch("https://coolage.app");
-                        },
-                        child: Text(
-                          "Visit Coolage",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
-                
+                    ),
+                    MaterialButton(
+                      color: Colors.pink,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+                      onPressed: () {
+                        launch("https://coolage.app");
+                      },
+                      child: Text(
+                        "Visit Coolage",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
               ]),
             );
           }
@@ -196,5 +233,4 @@ class _MyAppState extends State<MyApp> {
       )),
     );
   }
-
 }
