@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MiddleScreen extends StatelessWidget {
+  final List<String> hindi = [
+    "समर्थन करें",
+    "चीन के खिलाफ मुहीम में",
+    "चाइनीज एप्स को बैन करें",
+    "चीनी उत्पादों पर प्रतिबंध लगाएं",
+    "चीन से फंड न लें",
+    "चीन से हमारे क्षेत्र वापस लो",
+    "घर में रहो, सुरक्षित रहो",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -51,7 +61,8 @@ class ProjectWidget extends StatelessWidget {
         .box
         .p8
         .roundedLg
-        .neumorphic(color: Colors.deepOrangeAccent, elevation: 5, curve: VxCurve.flat)
+        .neumorphic(
+            color: Colors.deepOrangeAccent, elevation: 5, curve: VxCurve.flat)
         .alignCenter
         .square(200)
         .make()

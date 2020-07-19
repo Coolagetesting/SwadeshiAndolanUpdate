@@ -27,6 +27,11 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
   TabController _appController;
   TabController _productController;
 
+  final List<String> hindi = [
+    "प्रतिबंधित चीनी एप्प्स ",
+    "भारतीय विकल्प",
+  ];
+
   final List<String> appString = [
     "Social",
     "Chatting",
@@ -83,7 +88,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
     new Tab(text: 'Video Editing'),
     new Tab(text: 'Photo Editing'),
   ];
-  
+
   List<Tab> productList = [
     new Tab(text: 'Mobiles'),
     new Tab(text: "A.C"),
@@ -174,10 +179,11 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                       return Item2(item: itemModel);
                     }),
                   )
-            : snapshot.hasData ?  Container(
-                child: Text('No Data Available'),
-              ) : circularProgress();
-              
+            : snapshot.hasData
+                ? Container(
+                    child: Text('No Data Available'),
+                  )
+                : circularProgress();
       },
     );
 
@@ -194,9 +200,11 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                 },
                 shrinkWrap: true,
               )
-            : snapshot.hasData ?  Container(
-                child: Text('No Data Available'),
-              ) : circularProgress();
+            : snapshot.hasData
+                ? Container(
+                    child: Text('No Data Available'),
+                  )
+                : circularProgress();
       },
     );
 
@@ -281,9 +289,11 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                     }),
                     shrinkWrap: true,
                   )
-            : snapshot.hasData ?  Container(
-                child: Text('No Data Available'),
-              ) : circularProgress();
+            : snapshot.hasData
+                ? Container(
+                    child: Text('No Data Available'),
+                  )
+                : circularProgress();
       },
     );
 
@@ -300,9 +310,11 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                 },
                 shrinkWrap: true,
               )
-            : snapshot.hasData ?  Container(
-                child: Text('No Data Available'),
-              ) : circularProgress();
+            : snapshot.hasData
+                ? Container(
+                    child: Text('No Data Available'),
+                  )
+                : circularProgress();
       },
     );
 

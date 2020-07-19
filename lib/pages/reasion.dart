@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:swadeshiandolan/main.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
 
 class ReasonPage extends StatefulWidget {
@@ -11,6 +12,17 @@ class ReasonPage extends StatefulWidget {
 
   _ReasonPageState createState() => _ReasonPageState();
 }
+
+final List<String> hindi = [
+  "भारतीय बाजारों में चीनी उत्पाद",
+  "दवाइयाँ. ",
+  "एप्प्स",
+  "टीवी",
+  "मोबाइल",
+  "प्रोडक्ट्स",
+  "अन्य",
+  "भारत में चीनी उत्पादों की वृद्धि दर",
+];
 
 class _ReasonPageState extends State<ReasonPage> {
   List<charts.Series<Pollution, String>> _seriesData;
@@ -35,12 +47,12 @@ class _ReasonPageState extends State<ReasonPage> {
     ];
 
     var piedata = [
-      new Task('Medicine', 35.8, Color(0xff3366cc)),
-      new Task('Mobiles', 8.3, Color(0xff990099)),
-      new Task('Apps', 10.8, Color(0xff109618)),
-      new Task('TV', 15.6, Color(0xfffdbe19)),
-      new Task('products', 19.2, Color(0xffff9900)),
-      new Task('Other', 10.3, Color(0xffdc3912)),
+      new Task(english ? 'Medicine' : "दवाइयाँ", 35.8, Color(0xff3366cc)),
+      new Task(english ? 'Mobiles' : "मोबाइल", 8.3, Color(0xff990099)),
+      new Task(english ? 'Apps' : "एप्प्स", 10.8, Color(0xff109618)),
+      new Task(english ? 'TV' : "टीवी", 15.6, Color(0xfffdbe19)),
+      new Task(english ? 'products' : "प्रोडक्ट्स", 19.2, Color(0xffff9900)),
+      new Task(english ? 'Other' : "अन्य", 10.3, Color(0xffdc3912)),
     ];
 
     var linesalesdata = [

@@ -19,31 +19,33 @@ class Language extends StatefulWidget {
 class _LanguageState extends State<Language> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          MaterialButton(
-            onPressed: () {
-              setState(() {
-                english = false;
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
-              });
-            },
-            child: Text("Hindi"),
-          ),
-          MaterialButton(
-            onPressed: () {
-              setState(() {
-                english = true;
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
-              });
-            },
-            child: Text("English"),
-          )
-        ],
+    return Scaffold(
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  english = false;
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyApp()));
+                });
+              },
+              child: Text("Hindi"),
+            ),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  english = true;
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyApp()));
+                });
+              },
+              child: Text("English"),
+            )
+          ],
+        ),
       ),
     );
   }

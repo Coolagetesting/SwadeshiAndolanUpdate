@@ -6,6 +6,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HeaderScreen extends StatelessWidget {
+  final List<String> hindi = [
+    "स्वदेशी का समर्थन करें",
+    " - स्वदेशी आन्दोलन",
+    "समय आ गया है की स्वदेशी अपनाकर हम सोन-चिरैया को उसके घोंसले में वापस ले आये .\n स्वदेशी को आगे लाएं \n स्वदेशी अपनाओ ! विकास बढाओ !!",
+  ];
+
   @override
   Widget build(BuildContext context) {
     final nameWidget = "Support\nIndia."
