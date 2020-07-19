@@ -6,10 +6,6 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../utils/colors.dart';
 
 class FooterScreen extends StatelessWidget {
-  final List<String> hindi = [
-    "किसी भी जानकारी के लिए हमसे संपर्क करे : ",
-    "मेक इन इंडिया के साथ",
-  ];
   @override
   Widget build(BuildContext context) {
     return VStack(
@@ -17,7 +13,9 @@ class FooterScreen extends StatelessWidget {
         VxDevice(
           mobile: VStack(
             [
-              "Want to connect With Us?\nLet's talk."
+              (english
+                      ? "Want to connect With Us?\nLet's talk."
+                      : "किसी भी जानकारी के लिए हमसे \nसंपर्क करे : ")
                   .text
                   .center
                   .white
@@ -39,7 +37,9 @@ class FooterScreen extends StatelessWidget {
           ),
           web: HStack(
             [
-              "Want to connect With Us?\nLet's talk."
+              (english
+                      ? "Want to connect With Us?\nLet's talk."
+                      : "किसी भी जानकारी के लिए हमसे \nसंपर्क करे : ")
                   .text
                   .center
                   .white
@@ -70,7 +70,10 @@ class FooterScreen extends StatelessWidget {
         SocialAccounts(),
         30.heightBox,
         [
-          "Made in India with".text.red700.make(),
+          (english ? "Made in India with" : "मेक इन इंडिया के साथ")
+              .text
+              .red700
+              .make(),
           10.widthBox,
           Icon(
             AntDesign.heart,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:swadeshiandolan/firebase/database.dart';
+import 'package:swadeshiandolan/main.dart';
 import 'package:swadeshiandolan/models/item.dart';
 import 'package:swadeshiandolan/models/item_prod.dart';
 import 'package:swadeshiandolan/pages/frontpage/footer.dart';
@@ -26,11 +27,6 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
 
   TabController _appController;
   TabController _productController;
-
-  final List<String> hindi = [
-    "प्रतिबंधित चीनी एप्प्स ",
-    "भारतीय विकल्प",
-  ];
 
   final List<String> appString = [
     "Social",
@@ -221,7 +217,9 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Chinese Apps Banned',
+                      english
+                          ? 'Chinese Apps Banned'
+                          : "प्रतिबंधित चीनी एप्प्स",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24.0,
@@ -240,7 +238,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
                 child: Text(
-                  'Alternatives',
+                  english ? 'Alternatives' : "भारतीय विकल्प",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24.0,
@@ -331,7 +329,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Chinese Products',
+                      english ? 'Chinese Products' : "चीनी उत्पादों",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24.0,
@@ -350,7 +348,7 @@ class _SliverHomeState extends State<SliverHome> with TickerProviderStateMixin {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
                 child: Text(
-                  'Alternatives',
+                  english ? 'Alternatives' : "भारतीय विकल्प",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24.0,

@@ -13,17 +13,6 @@ class ReasonPage extends StatefulWidget {
   _ReasonPageState createState() => _ReasonPageState();
 }
 
-final List<String> hindi = [
-  "भारतीय बाजारों में चीनी उत्पाद",
-  "दवाइयाँ. ",
-  "एप्प्स",
-  "टीवी",
-  "मोबाइल",
-  "प्रोडक्ट्स",
-  "अन्य",
-  "भारत में चीनी उत्पादों की वृद्धि दर",
-];
-
 class _ReasonPageState extends State<ReasonPage> {
   List<charts.Series<Pollution, String>> _seriesData;
   List<charts.Series<Task, String>> _seriesPieData;
@@ -31,19 +20,19 @@ class _ReasonPageState extends State<ReasonPage> {
 
   _generateData() {
     var data1 = [
-      new Pollution(1980, 'Apps', 30),
-      new Pollution(1980, 'Mobiles', 40),
-      new Pollution(1980, 'Medicies', 10),
+      new Pollution(1980, english ? 'Apps' : "एप्प्स", 30),
+      new Pollution(1980, english ? 'Mobiles' : "मोबाइल", 40),
+      new Pollution(1980, english ? 'Medicies' : "दवाइयाँ", 10),
     ];
     var data2 = [
-      new Pollution(1985, 'Apps', 100),
-      new Pollution(1980, 'Mobiles', 150),
-      new Pollution(1985, 'Medicies', 80),
+      new Pollution(1985, english ? 'Apps' : "एप्प्स", 100),
+      new Pollution(1980, english ? 'Mobiles' : "मोबाइल", 150),
+      new Pollution(1985, english ? 'Medicies' : "दवाइयाँ", 80),
     ];
     var data3 = [
-      new Pollution(1985, 'Apps', 200),
-      new Pollution(1980, 'Mobiles', 300),
-      new Pollution(1985, 'Medicies', 180),
+      new Pollution(1985, english ? 'Apps' : "एप्प्स", 200),
+      new Pollution(1980, english ? 'Mobiles' : "मोबाइल", 300),
+      new Pollution(1985, english ? 'Medicies' : "दवाइयाँ", 180),
     ];
 
     var piedata = [
@@ -197,7 +186,9 @@ class _ReasonPageState extends State<ReasonPage> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Chinese Products in Indian Market',
+                          english
+                              ? 'Chinese Products in Indian Market'
+                              : "भारतीय बाजारों में चीनी उत्पाद",
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -243,7 +234,9 @@ class _ReasonPageState extends State<ReasonPage> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Groth rate of Chinese Products in India',
+                          english
+                              ? 'Groth rate of Chinese Products in India'
+                              : "भारत में चीनी उत्पादों की वृद्धि दर",
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -268,7 +261,9 @@ class _ReasonPageState extends State<ReasonPage> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Sales in last 5 years',
+                          english
+                              ? 'Sales in last 5 years'
+                              : "पिछले 5 वर्षों में बिक्री",
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -279,18 +274,20 @@ class _ReasonPageState extends State<ReasonPage> {
                               animate: true,
                               animationDuration: Duration(seconds: 2),
                               behaviors: [
-                                new charts.ChartTitle('Years',
+                                new charts.ChartTitle(
+                                    english ? 'Years' : "वर्षों",
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                new charts.ChartTitle('Sales',
+                                new charts.ChartTitle(
+                                    english ? 'Sales' : "बिक्री",
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
                                 new charts.ChartTitle(
-                                  'Departments',
+                                  english ? 'Departments' : "विभागों",
                                   behaviorPosition: charts.BehaviorPosition.end,
                                   titleOutsideJustification: charts
                                       .OutsideJustification.middleDrawArea,

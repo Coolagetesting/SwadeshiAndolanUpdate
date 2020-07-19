@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:swadeshiandolan/main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MiddleScreen extends StatelessWidget {
-  final List<String> hindi = [
-    "समर्थन करें",
-    "चीन के खिलाफ मुहीम में",
-    "चाइनीज एप्स को बैन करें",
-    "चीनी उत्पादों पर प्रतिबंध लगाएं",
-    "चीन से फंड न लें",
-    "चीन से हमारे क्षेत्र वापस लो",
-    "घर में रहो, सुरक्षित रहो",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -20,10 +11,16 @@ class MiddleScreen extends StatelessWidget {
         child: Flex(
             direction: context.isMobile ? Axis.vertical : Axis.horizontal,
             children: [
-              "Support In,\n"
+              (english ? "Support In,\n" : "समर्थन करें\n")
                   .richText
-                  .withTextSpanChildren(
-                      ["Muhim Against China.".textSpan.green900.make()])
+                  .withTextSpanChildren([
+                    (english
+                            ? "Muhim Against China."
+                            : "चीन के खिलाफ मुहीम में")
+                        .textSpan
+                        .green900
+                        .make()
+                  ])
                   .xl4
                   .white
                   .make(),
@@ -33,11 +30,26 @@ class MiddleScreen extends StatelessWidget {
                 enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,
                 items: [
-                  ProjectWidget(title: "Ban Chinese Apps"),
-                  ProjectWidget(title: "Ban Chinese Products"),
-                  ProjectWidget(title: "Say No Funds From China"),
-                  ProjectWidget(title: "Get Our Area Back"),
-                  ProjectWidget(title: "Stay Home Stay Safe"),
+                  ProjectWidget(
+                      title: english
+                          ? "Ban Chinese Apps"
+                          : "चाइनीज एप्स को बैन करें"),
+                  ProjectWidget(
+                      title: english
+                          ? "Ban Chinese Products"
+                          : "चीनी उत्पादों पर प्रतिबंध लगाएं"),
+                  ProjectWidget(
+                      title: english
+                          ? "Say No Funds From China"
+                          : "चीन से फंड न लें"),
+                  ProjectWidget(
+                      title: english
+                          ? "Get Our Area Back"
+                          : "चीन से हमारे क्षेत्र वापस लो"),
+                  ProjectWidget(
+                      title: english
+                          ? "Stay Home Stay Safe"
+                          : "घर में रहो,सुरक्षित रहो"),
                 ],
                 height: 180,
                 viewportFraction: context.isMobile ? 0.75 : 0.4,

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:swadeshiandolan/main.dart';
 import 'package:swadeshiandolan/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -6,20 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HeaderScreen extends StatelessWidget {
-  final List<String> hindi = [
-    "स्वदेशी का समर्थन करें",
-    " - स्वदेशी आन्दोलन",
-    "समय आ गया है की स्वदेशी अपनाकर हम सोन-चिरैया को उसके घोंसले में वापस ले आये .\n स्वदेशी को आगे लाएं \n स्वदेशी अपनाओ ! विकास बढाओ !!",
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final nameWidget = "Support\nIndia."
+    final nameWidget = (english ? "Support\nIndia." : "स्वदेशी\nसमर्थन")
         .text
         .orange600
         .xl6
-        .lineHeight(1.2)
-        .size(context.isMobile ? 15 : 20)
+        .lineHeight(1.3)
+        .size(context.isMobile ? 13 : 17)
         .bold
         .make()
         .shimmer();
@@ -88,9 +83,16 @@ class IntroductionWidget extends StatelessWidget {
     return VStack(
       [
         [
-          " - Swadeshi Andolan".text.gray500.widest.sm.make(),
+          (english ? " - Swadeshi Andolan" : " - स्वदेशी आन्दोलन")
+              .text
+              .gray500
+              .widest
+              .sm
+              .make(),
           10.heightBox,
-          "\"Use Indian, Support Indians\" Let's bring the Golden Bird back to it's nest by adopting and supporting Indian Goods . \nBring forth the Swadeshi Andolan. \nSupport Swadeshi! \nPrioritize Swadeshi!"
+          (english
+                  ? "\"Use Indian, Support Indians\" Let's bring the Golden Bird back to it's nest by adopting and supporting Indian Goods . \nBring forth the Swadeshi Andolan. \nSupport Swadeshi! \nPrioritize Swadeshi!"
+                  : "समय आ गया है की स्वदेशी अपनाकर हम सोन-चिरैया को उसके घोंसले में वापस ले आये .\nस्वदेशी को आगे लाएं \nस्वदेशी अपनाओ ! विकास बढाओ !!")
               .text
               .white
               .xl3

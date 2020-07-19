@@ -198,7 +198,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Swadeshi Andolan',
@@ -207,34 +206,56 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.poppinsTextTheme(),
         brightness: Brightness.light,
       ),
-      home: english !=null  ? Language() : Container(
-        color: Colors.green,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MaterialButton(
-              onPressed: () {
-                setState(() {
-                  english = false;
-                });
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (context) => Language()));
-              },
-              child: Text("Hindi"),
+      home: english != null
+          ? Language()
+          : Container(
+              color: Coolors.primaryColor,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: MaterialButton(
+                      splashColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () {
+                        setState(() {
+                          english = false;
+                        });
+                        // Navigator.push(
+                        //     context, MaterialPageRoute(builder: (context) => Language()));
+                      },
+                      child: Text(
+                        "हिन्दी",
+                        style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: MaterialButton(
+                      splashColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () {
+                        setState(() {
+                          english = true;
+                        });
+                        // Navigator.push(
+                        //     context, MaterialPageRoute(builder: (context) => Language()));
+                      },
+                      child: Text("English",
+                          style: TextStyle(
+                              color: Colors.orangeAccent,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  )
+                ],
+              ),
             ),
-            MaterialButton(
-              onPressed: () {
-                setState(() {
-                  english = true;
-                });
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (context) => Language()));
-              },
-              child: Text("English"),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
