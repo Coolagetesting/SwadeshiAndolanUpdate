@@ -55,7 +55,7 @@ class _LanguageState extends State<Language> {
                           });
                         },
                         child: Text(
-                          "Apps",
+                          english ? "Apps" : "ऐप्स",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -69,7 +69,7 @@ class _LanguageState extends State<Language> {
                           });
                         },
                         child: Text(
-                          "Products",
+                          english ? "Products" : "उत्पाद",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -83,7 +83,9 @@ class _LanguageState extends State<Language> {
                           });
                         },
                         child: Text(
-                          pageIndex == 0 ? 'Stats' : 'Home',
+                          pageIndex == 0
+                              ? (english ? 'Stats' : "आँकड़े")
+                              : (english ? 'Home' : "होम"),
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -129,7 +131,7 @@ class _LanguageState extends State<Language> {
                         });
                       },
                       child: Text(
-                        "Apps",
+                        english ? "Apps" : "ऐप्स",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -140,7 +142,7 @@ class _LanguageState extends State<Language> {
                         });
                       },
                       child: Text(
-                        "Products",
+                        english ? "Products" : "उत्पाद",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -151,7 +153,9 @@ class _LanguageState extends State<Language> {
                         });
                       },
                       child: Text(
-                        pageIndex == 0 ? 'Stats' : 'Home',
+                        pageIndex == 0
+                            ? (english ? 'Stats' : "आँकड़े")
+                            : (english ? 'Home' : "होम"),
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

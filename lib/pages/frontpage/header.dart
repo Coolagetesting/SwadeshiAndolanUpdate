@@ -13,7 +13,7 @@ class HeaderScreen extends StatelessWidget {
         .text
         .orange600
         .xl6
-        .lineHeight(1.3)
+        .lineHeight(1.4)
         .size(context.isMobile ? 13 : 17)
         .bold
         .make()
@@ -22,7 +22,7 @@ class HeaderScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 50,
+          height: 30,
         ),
         SafeArea(
           child: VxBox(
